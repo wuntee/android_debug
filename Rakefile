@@ -17,7 +17,7 @@ Jeweler::Tasks.new do |gem|
   gem.name = "android_debug"
   gem.homepage = "http://github.com/wuntee/android_debug"
   gem.license = "MIT"
-  gem.summary = "A scriptable debugger to interact with Android applications"
+  gem.summary = "A scriptable debugger library to interact with Android applications"
   gem.description = ""
   gem.email = "mathew.rowley@gmail.com"
   gem.authors = ["wuntee"]
