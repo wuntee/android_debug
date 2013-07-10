@@ -69,7 +69,7 @@ module AndroidDebug
         end
 
         def set_activity_debug(activity)
-            set_activity_debug("am set-debug-app -w #{activity}")
+            shell_command("am set-debug-app -w #{activity}")
         end
     end
 end
