@@ -44,5 +44,6 @@ module AndroidDebug
             AndroidDebugBridge.disconnectBridge
             AndroidDebugBridge.terminate
         end 
+
     end
 end
