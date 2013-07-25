@@ -8,6 +8,7 @@ dbg.on_break do
             puts("\t#{var}")
         end
     end
+    dbg.resume
 end
 dbg.add_class_entry_breakpoint("android.content.Context")
 dbg.go

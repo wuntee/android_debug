@@ -14,6 +14,7 @@ This is a scriptable debugger for Android applications. Sample usage:
                 puts("\t#{var}")
             end
         end
+        dbg.resume
     end
     dbg.add_class_entry_breakpoint("android.content.Context")
     dbg.go
@@ -29,6 +30,13 @@ Core concepts:
 * You can invoke remote methods by calling Object.method(args)
 * Invoking methods will re-start the application, and you will lose your break.
 * Most classes are extending existing Java classes. Any method you will typically call on a java class will percilate down to the core Java class, if it exists. (See the JavaPassthrough mixin for specifics)
+* You must resume the debugger in the 'on_break' block ('dbg.resume') before returning. This is because there is the ability to step within the block as well.
+
+Linux users:
+------------
+
+* You must use the sun 'JDK' as it is the only packages that has the com.sun.jdi classes
+* You also may have to explicitally add the tools.jar to teh $CLASSPATH variable in your script. (This will be the case if you see the following exception: NameError: cannot load Java class com.sun.jdi.Bootstrap)
 
 Contributing to android_debug
 =============================
