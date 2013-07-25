@@ -71,8 +71,3 @@ module AndroidDebug
     end
 end
 
-adb = AndroidDebug::AdbNative.new
-device = adb.devices.keys[0]
-pids = adb.jdwp_pids(device)
-puts pids
-puts adb.forward_jdwp(device, 5556, pids[0])
