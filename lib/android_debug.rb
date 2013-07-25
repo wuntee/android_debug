@@ -32,11 +32,11 @@ module AndroidDebug
         devices = adb.devices
         device = adb.devices[0]
 
-        port = 5559
+        port = 5570
 
         adb.set_activity_debug(package)
         adb.launch_activity(package, clazz)
-        sleep(0.1)
+        sleep(0.5)
         pid = adb.jdwp_pids(device)[-1]
         adb.forward_jdwp(device, port, pid)
 
