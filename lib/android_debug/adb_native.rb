@@ -42,20 +42,17 @@ module AndroidDebug
         end
 
         def jdwp_pids(device)
-            send_command("host:track-devices")
             send_command("host:transport-#{device}")
-            send_command("track-jdwp", false)
+            send_command("jdwp", false)
             
             # format [4-size][rest]
             size = @soc.recvfrom(4)[0].to_i(16)
             ret = @soc.recvfrom(size)[0].strip
-            return(ret[4, ret.size])
+            return(ret[4, ret.size].split("\n"))
         end
 
-        def jdpw_handshake(device, pid)
-            send_command("host:transport:#{device}")
-            send_command("jdwp:#{pid}")
-            
+        def forward_jdwp(device, local_port, remote_pid)
+            return send_command("host:forward:tcp:#{local_port};jdwp:#{remote_pid}")
         end
 
         def shell_command(command, transport = "any", new_connection = true)
@@ -76,8 +73,6 @@ end
 
 adb = AndroidDebug::AdbNative.new
 device = adb.devices.keys[0]
-puts device
-adb.jdwp_pids(device).each do |pid|
-    puts("==#{pid}")
-
-end
+pids = adb.jdwp_pids(device)
+puts pids
+puts adb.forward_jdwp(device, 5556, pids[0])

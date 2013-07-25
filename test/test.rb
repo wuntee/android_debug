@@ -2,7 +2,7 @@ require_relative '../lib/android_debug.rb'
 
 $DEBUG = true
 
-dbg = AndroidDebug.launch_and_attach("com.android.browser", "com.android.browser.BrowserActivity")
+dbg = AndroidDebug.launch_and_attach_native("com.android.browser", "com.android.browser.BrowserActivity")
 #dbg = AndroidDebug.launch_and_attach("com.wuntee.dummyandroidproject", "com.wuntee.dummyandroidproject.DummyAndroidActivity")
 
 vars = {}
