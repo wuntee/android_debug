@@ -48,10 +48,10 @@ module AndroidDebug
             # @param value Basic type or [com.sun.jdi.Value]
             def set_variable(variable, value)
                 new_value = @java_frame.virtualMachine.mirrorOf(value)
-                puts("Variable: #{variable.java_local_variable.class}")
-                puts("Variable type: #{variable}")
-                puts("New Value: #{new_value.class}")
-                puts("New Value value: #{new_value.value}")
+                $DEBUG and puts("Variable: #{variable.java_local_variable.class}")
+                $DEBUG and puts("Variable type: #{variable}")
+                $DEBUG and puts("New Value: #{new_value.class}")
+                $DEBUG and puts("New Value value: #{new_value.value}")
 
                 '''
                 For some reason in this call either variable.java_value or new_value are of the wrong type
@@ -67,7 +67,7 @@ module AndroidDebug
                 new_value = @java_frame.virtualMachine.mirrorOf(value)
                 variables.each do |var|
                     if(var.name == name)
-                        set_variable(var, name)
+                        set_variable(var, value)
                         return
                     end
                 end
