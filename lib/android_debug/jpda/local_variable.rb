@@ -53,7 +53,7 @@ module AndroidDebug
             def inspect_array_reference(array_reference, tabs=1)
                 puts("[")
                 array_reference.getValues.each_with_index do |val, i|
-                    if(array_reference.java_kind_of?(com.sun.jdi.ArrayReference))
+                    if(val.java_kind_of?(com.sun.jdi.ArrayReference))
                         puts("[")
                         inspect_array_reference(val, tabs+1)
                     else
